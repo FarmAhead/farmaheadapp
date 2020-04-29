@@ -2,7 +2,7 @@
 # set up nginx service, enable, and restart
 - name: Template systemd gunicorn config
   template:
-    src: templates/gunicorn.j2
+    src: templates/gunicorn.service.j2
     dest: /etc/systemd/system/gunicorn.service
     force: yes
 
@@ -15,7 +15,7 @@
 
 - name: Template nginx global config
   template:
-    src: templates/nginx.j2
+    src: templates/nginx.conf.j2
     dest: /etc/nginx/nginx.conf
     force: yes
 

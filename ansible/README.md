@@ -15,8 +15,8 @@ Role Variables
 
 These are the so-called sub-processes and their tags that can be specified on an either `don't do` or `only do` basis
 
-- name: Copy deploy key(s) to server
-  - `keys`
+- ~~name: Copy deploy key(s) to server~~
+  - ~~`keys`~~
 - name: Install base packages
   - `system`
 - name: Set environment variables
@@ -25,23 +25,25 @@ These are the so-called sub-processes and their tags that can be specified on an
   - `logs`
 - name: Configure Postgres
   - `database`
-- name: Install frontend
-  - `api`
 - name: Install application
   - `app`
 - name: Migrate database
   - `migrate`
 - name: Configure Nginx server
   - `server`
-- name: Test if site is accessable
+- name: Test if site is accessible
   - `test`
 
 Dependencies
 ------------
-
+> **NOTE: ansible *must* be installed with & configured to use Python 3**
 ```bash
 $ pip3 install ansible
-ansible version
+$ ansible --version
+ansible 2.8.4
+  ansible python module location = /usr/local/lib/python3.7/site-packages/ansible
+  executable location = /usr/local/bin/ansible
+  python version = 3.7.6 (default, Dec 30 2019, 19:38:28) [Clang 11.0.0 (clang-1100.0.33.16)]
 ```
 
 Examples
@@ -51,12 +53,21 @@ Examples
 
 `Complete installation`
 ```bash
-$ ansible-playbook deploy.yml --inventory hosts/webserver.ini --extra-vars "git_branch=master"
+$ ansible-playbook deploy.yml --inventory hosts/production.ini --extra-vars "git_branch=master"
 ```
 
 `Update app`
 ```bash
-$ ansible-playbook deploy.yml --inventory hosts/webserver.ini --extra-vars "git_branch=master" --tags "app, migrate, server, test"
+$ ansible-playbook deploy.yml --inventory hosts/production.ini --extra-vars "git_branch=master" --tags "app, migrate, server, test"
 ```
 
+`Vagrant install (local)`
 
+Detailed instructions available at `../vagrant/README.md`
+```bash
+$ cd ../vagrant
+$ vagrant up --provision
+# by default, Vagrant will forward to 77.77.77.7
+$ curl -s -o /dev/null -w "%{http_code}\n" 77.77.77.7
+200
+```

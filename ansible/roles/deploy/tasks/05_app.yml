@@ -1,30 +1,30 @@
 ---
   # fetch source code and install
 - name: Clone source repository
+  become_user: "{{ ansible_ssh_user }}"
   git:
     repo: "{{ repo_url }}"
     dest: /home/{{ ansible_ssh_user }}/{{ app_name }}
     version: "{{ git_branch }}"   # SHA-1 hash, the literal string HEAD, a branch name, or a tag name
     update: yes  # Does a git pull if the repo already exists
     force: yes
-    accept_hostkey: yes
-    key_file: /home/{{ ansible_ssh_user }}/.ssh/deploy_key
-  become_user: "{{ ansible_ssh_user }}"
+    # accept_hostkey: yes
+    # key_file: /home/{{ ansible_ssh_user }}/.ssh/deploy_key
 
 ## SERVER ##
 - name: Install virtualenv packages
+  become_user: "{{ ansible_ssh_user }}"
   pip:
     requirements: /home/{{ ansible_ssh_user }}/{{ app_name }}/server/requirements.txt
     virtualenv: /home/{{ ansible_ssh_user }}/{{ app_name }}/server/env
     virtualenv_python: python3
-  become_user: "{{ ansible_ssh_user }}"
 
 - name: Install {{ app_name }} source
+  become_user: "{{ ansible_ssh_user }}"
   pip:
     name: /home/{{ ansible_ssh_user }}/{{ app_name }}/server
     extra_args: '-e'   # installs editably
     virtualenv: /home/{{ ansible_ssh_user }}/{{ app_name }}/server/env
-  become_user: "{{ ansible_ssh_user }}"
 
 ## CLIENT ##
 - name: Remove existing build
@@ -62,18 +62,3 @@
     mode: 0755
     owner: root
     group: root
-
-## RICK ROLL ##
-# - name: Copy index.html to html
-#   become: true
-#   copy:
-#     src: files/index.html
-#     dest: /usr/share/nginx/html/index.html
-#     force: yes
-
-# - name: Copy media to html
-#   become: true
-#   copy:
-#     src: files/video.mp4
-#     dest: /usr/share/nginx/html/video.mp4
-#     force: yes

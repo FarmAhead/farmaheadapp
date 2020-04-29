@@ -2,7 +2,8 @@
 # defaults file for deploy
 
 # application source code
-repo_url: git@github.com:{{ github_user }}/{{ app_name }}.git
+repo_url: https://github.com/{{ github_user }}/{{ app_name }}.git   # HTTPS
+# repo_url: git@github.com:{{ github_user }}/{{ app_name }}.git     # SSH
 
 # system packages
 packages:
@@ -45,16 +46,16 @@ gunicorn_access_log: "{{ log_file_directory }}/gunicorn/gunicorn-access.log"
 
 # environment variables
 os_environment:
-  - key: RDS_USERNAME
+  - key: DB_USERNAME
     value: "{{ postgres_user }}"
 
-  - key: RDS_PASSWORD
+  - key: DB_PASSWORD
     value: "{{ postgres_password }}"
 
-  - key: RDS_HOST
+  - key: DB_HOST
     value: "{{ postgres_host }}"
 
-  - key: RDS_NAME
+  - key: DB_NAME
     value: "{{ postgres_database }}"
 
   - key: FLASK_CONFIG_CLASS
@@ -76,3 +77,6 @@ os_environment:
   # and since we are locking down our path to the venv we lose /usr/bin/
   - key: GIT_PYTHON_GIT_EXECUTABLE
     value: "/usr/bin/git"
+
+  - key: NODE_ENV
+    value: "{{ flask_config_class | lower }}"

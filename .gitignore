@@ -114,6 +114,7 @@ virtualenv/
 ENV/
 bin/
 include/
+share/
 
 .vscode
 # Spyder project settings
