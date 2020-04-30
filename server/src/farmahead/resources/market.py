@@ -83,7 +83,7 @@ class MarketByZipResource(Resource):
 
     def get(self, zipcode=None):
         parser = reqparse.RequestParser()
-        parser.add_argument('zipcode', type=int, ignore=False)
+        parser.add_argument('distance', type=int, ignore=False)
         args = parser.parse_args()
 
         _distance = args.get('distance')

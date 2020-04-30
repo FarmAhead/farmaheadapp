@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import FlexBox from '../custom/FlexBox'
+import FlexBox from './FlexBox'
+import Filter from '../filter'
+import { PRODUCE } from '../../constants/globalConstants'
 
 const NUM_COLUMNS = 5
 const NUM_ROWS = 2
@@ -39,7 +41,7 @@ const paginatorIcons = (objects, offset, setOffset) => {
   )
 }
 
-export default ({ objects, renderCard }) => {
+export default ({ objects, renderCard, page }) => {
   if (!objects) return null
   const [offset, setOffset] = useState(0)
 
@@ -56,7 +58,9 @@ export default ({ objects, renderCard }) => {
         rows.push([])
       }
 
-      rows[rows.length - 1].push(<FlexBox shrink>{renderCard(obj)}</FlexBox>)
+      rows[rows.length - 1].push(
+        <FlexBox shrink>{React.createElement(renderCard, { obj })}</FlexBox>
+      )
     })
 
   const formattedRows = rows.map((row) => {
@@ -74,6 +78,7 @@ export default ({ objects, renderCard }) => {
       justify="space-between"
       align="center"
     >
+      {page !== PRODUCE ? <Filter page={page} /> : null}
       <FlexBox
         shrink
         style={{ marginBottom: '24px' }}

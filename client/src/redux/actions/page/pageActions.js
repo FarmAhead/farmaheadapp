@@ -20,6 +20,8 @@ export function pageReceived(page, pageData) {
       return { type: VENDORS_RECEIVED, payload: pageData }
     case PRODUCE:
       return { type: PRODUCE_RECEIVED, payload: pageData }
+    default:
+      return { type: 'PAGE_ERROR', payload: [] }
   }
 }
 
