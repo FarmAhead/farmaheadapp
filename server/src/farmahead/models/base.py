@@ -17,7 +17,7 @@ class BaseModel(db.Model):
     modified_at =   db.Column(db.DateTime(),nullable=True, onupdate=datetime.datetime.utcnow())
 
 
-class BaseSchema(ma.ModelSchema):
+class BaseSchema(ma.SQLAlchemyAutoSchema):
 
     @post_dump
     def inject_react_uuid(self, data, **kwargs):

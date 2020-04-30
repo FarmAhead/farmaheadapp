@@ -21,8 +21,11 @@ def create_app(config_cls=None, settings_override=None):
         "Development": Development(),
         "Testing": Testing()
     }
-    print(f'{loc}: {configs.get(mode)}')
-    app.config.from_object(configs.get(mode))
+    cfg = configs.get(mode)
+    _a, _b = '\033[94m', '\033[0m'  # wrap text in color
+    print(f'{_a}{loc}: {type(cfg)}{_b}')
+    app.config.from_object(cfg)
+
     app.url_map.strict_slashes = False  # dont require trailing slashes
 
     if settings_override:
