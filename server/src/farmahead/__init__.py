@@ -1,1 +1,2 @@
-__version__ = '0.0.1'
+# farmahead/__init__.py
+from .__version__ import __version__
