@@ -1,5 +1,4 @@
 # core deps
-python-dotenv
 flask
 flask-cors
 flask-script

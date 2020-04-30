@@ -1,8 +1,8 @@
 ---
-# - name: Copy deploy key(s) to server
-#   become: yes
-#   include: 00_keys.yml
-#   tags: ['keys']
+- name: Copy deploy key(s) to server
+  become: yes
+  include: 00_keys.yml
+  tags: ['keys']
 
 - name: Install base packages
   become: yes

@@ -1,7 +1,6 @@
 from farmahead import __version__
 import os
-from dotenv import load_dotenv
-load_dotenv()
+
 
 class Settings:
 
@@ -13,10 +12,10 @@ class Settings:
         self.SQLALCHEMY_TRACK_MODIFICATIONS = False
         self.LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
         self.LOG_FILE = os.getenv('LOG_FILE', 'flask.log')
-        self.DB_USERNAME = os.getenv('DB_USERNAME', 'postgres')
-        self.DB_PASSWORD = os.getenv('DB_PASSWORD', 'password')
-        self.DB_HOST = os.getenv('DB_HOST', 'localhost')
-        self.DB_NAME = os.getenv('DB_NAME', 'farmahead')
+        self.DB_USERNAME = os.getenv('RDS_USERNAME', 'postgres')
+        self.DB_PASSWORD = os.getenv('RDS_PASSWORD', 'password')
+        self.DB_HOST = os.getenv('RDS_HOST', 'localhost')
+        self.DB_NAME = os.getenv('RDS_NAME', 'farmahead')
 
 
 class Development(Settings):

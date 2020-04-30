@@ -92,7 +92,7 @@ export default (props) => {
             </Button>
           </FlexBox>
         ) : null}
-        {canBeSnapEligible && snapStatus ? (
+        {snapStatus ? (
           <FlexBox
             direction="column"
             align="center"

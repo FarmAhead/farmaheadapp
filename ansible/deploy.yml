@@ -1,6 +1,6 @@
 ---
 - name: Execute EC2 deployment roles
-  hosts: production
+  hosts: webserver
   become: yes
   gather_facts: False
   roles:

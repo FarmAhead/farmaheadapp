@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import FlexBox from './FlexBox'
-
 import Filter from '../filter'
-
 import { PRODUCE } from '../../constants/globalConstants'
 
 const NUM_COLUMNS = 5
@@ -60,7 +58,9 @@ export default ({ objects, renderCard, page }) => {
         rows.push([])
       }
 
-      rows[rows.length - 1].push(<FlexBox shrink>{renderCard(obj)}</FlexBox>)
+      rows[rows.length - 1].push(
+        <FlexBox shrink>{React.createElement(renderCard, { obj })}</FlexBox>
+      )
     })
 
   const formattedRows = rows.map((row) => {

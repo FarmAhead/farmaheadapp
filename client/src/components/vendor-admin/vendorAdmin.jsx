@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { Container, Row, Col } from 'react-bootstrap'
+
 import NavHeader from '../nav-header'
 import Paginate from '../custom/Paginate'
 import { fetchProduceByVendor } from '../../redux/actions/produce/produceActions'
 import { renderProduceCard } from '../produce/Produce'
+import { ADMIN } from '../../constants/globalConstants'
 
 const mapStateToProps = (state) => ({
   ...state.user,
@@ -12,7 +15,7 @@ const mapStateToProps = (state) => ({
 })
 
 const VendorAdmin = () => {
-  const { user, produceByVendor } = useSelector(mapStateToProps)
+  const { userData, produceByVendor } = useSelector(mapStateToProps)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,6 +34,7 @@ const VendorAdmin = () => {
             <Paginate
               objects={produceByVendor}
               renderCard={renderProduceCard}
+              page={ADMIN}
             />
           </Col>
         </Row>

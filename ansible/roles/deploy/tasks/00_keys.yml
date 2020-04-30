@@ -1,8 +1,4 @@
 ---
-# This playbook is left as an archive/reference for any future needs,
-# but is effectively depracated by means of the repo being made public
-# This play has been commented in `main.yml` meaning it will not be
-# automatically run when called with the default settings.
 - name: Ensure ssh directory has correct permissions.
   file:
     path: /home/{{ ansible_ssh_user }}/.ssh/
