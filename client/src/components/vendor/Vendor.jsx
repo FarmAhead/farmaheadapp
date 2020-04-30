@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 
 const Vendor = () => {
   const { vendors = [] } = useSelector(mapStateToProps)
-  <Paginate page={VENDOR} objects={vendors} renderCard={VendorCard} />
+  return <Paginate page={VENDOR} objects={vendors} renderCard={VendorCard} />
 }
 
 export default Vendor
