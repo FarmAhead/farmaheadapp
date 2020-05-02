@@ -4,15 +4,18 @@ import {
   VENDORS_RECEIVED,
   PRODUCE_RECEIVED,
   PAGE_REQUESTED,
-} from './pageActionTypes'
+  pageReceivedAction
+} from '../../../types/actions/page/pageActionTypes'
 
 import { MARKET, VENDOR, PRODUCE } from '../../../constants/globalConstants'
+import { PageData } from '../../../types/pageTypes'
+import { Dispatch } from 'redux'
 
 export function pageRequested() {
   return { type: PAGE_REQUESTED }
 }
 
-export function pageReceived(page, pageData) {
+export function pageReceived(page: string, pageData: PageData) {
   switch (page) {
     case MARKET:
       return { type: MARKETS_RECEIVED, payload: pageData }
@@ -26,8 +29,8 @@ export function pageReceived(page, pageData) {
 }
 
 // Grab page data based on what page we're on
-export function fetchPageInfo(page) {
-  return (dispatch) => {
+export function fetchPageInfo(page:string) {
+  return (dispatch: Dispatch) => {
     dispatch(pageRequested())
     return Axios.get(`${process.env.REACT_APP_REST_URL}/${page}`)
       .then((response) => {
