@@ -2,7 +2,7 @@ import Axios from 'axios'
 import {
   FILTERED_MARKETS_RECEIVED,
   FILTERED_VENDORS_RECEIVED,
-} from './filterActionTypes'
+} from '../../../types/actions/filter/filterActionTypes'
 import { pageRequested } from '../page/pageActions'
 
 import { MARKET, VENDOR } from '../../../constants/globalConstants'
