@@ -8,7 +8,7 @@ import UserReducer from './user/userReducer'
 import ProduceByVendor from './produce/produceReducer'
 import VendorExtrasReducer from './vendor/vendorReducer'
 
-export default combineReducers({
+export const rootReducer = combineReducers({
   markets: MarketsReducer,
   vendors: VendorsReducer,
   produce: ProduceReducer,
@@ -16,3 +16,5 @@ export default combineReducers({
   produceByVendor: ProduceByVendor,
   vendorExtras: VendorExtrasReducer,
 })
+
+export type RootState = ReturnType<typeof rootReducer>

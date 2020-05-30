@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 
-import rootReducer from './redux/reducers/rootReducer'
+import { rootReducer } from './redux/reducers/rootReducer'
 
 const composeEnhancers =
   // @ts-ignore

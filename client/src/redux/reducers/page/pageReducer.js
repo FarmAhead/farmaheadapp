@@ -3,7 +3,7 @@ import {
   VENDORS_RECEIVED,
   PRODUCE_RECEIVED,
   PAGE_REQUESTED,
-} from '../../actions/page/pageActionTypes'
+} from '../../../types/actions/page/pageActionTypes'
 
 import {
   FILTERED_MARKETS_RECEIVED,

@@ -3,9 +3,9 @@ env:
   es6: true
 extends:
   - 'plugin:react/recommended'
-  - airbnb
-  - "plugin:prettier/recommended"
   - "plugin:@typescript-eslint/recommended"
+  - "prettier/@typescript-eslint"
+  - "plugin:prettier/recommended"
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
@@ -17,5 +17,16 @@ parserOptions:
   sourceType: module
 plugins:
   - react
-rules: {
-  semi: 0,
+rules:
+  semi: 0
+  "@typescript-eslint/member-delimiter-style": ["error", {
+    multiline: {
+      delimiter: 'none',
+      requireLast: true
+    },
+    singleline: {
+      delimiter: 'semi',
+      requireLast: false
+    },
+  }]
+
